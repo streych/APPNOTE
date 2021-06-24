@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">APPNOTE</string>
+    <string name="about">О программе</string>
+    <string name="settings">Настройки</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="settings_text">Настройки скоро появятся</string>
+    <string name="Загаловок">TitleNote</string>
+    <string name="title_note">Описание</string>
+    <string name="data_note">Дата</string>
+    <string name="description_note">Описание</string>
+</resources>
