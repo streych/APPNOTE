@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title">Заловок</string>
+    <string name="action_update">Изменить</string>
+    <string name="action_delete">Удалить</string>
+</resources>

@@ -13,18 +13,27 @@ import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.appnote.menu_fragment.FragmentAbout;
 import com.example.appnote.menu_fragment.FragmentSettings;
+import com.example.appnote.menu_fragment.NotesFragmentAdd;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, new NotesFragment()).addToBackStack(null).commit();
+        if (savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new NotesFragment()).addToBackStack(null).commit();
+        }
+
     }
 
     @Override
@@ -39,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         switch (id){
+            case R.id.action_add:
+                fragmentTransaction.replace(R.id.container, new NotesFragmentAdd()).addToBackStack(null).commit();
+                recreate();
+                return true;
             case R.id.about:
                 fragmentTransaction.replace(R.id.container, new FragmentAbout()).addToBackStack(null).commit();
                 recreate();

@@ -9,4 +9,11 @@
     <string name="title_note">Описание</string>
     <string name="data_note">Дата</string>
     <string name="description_note">Описание</string>
+    <string name="add">Добавить</string>
+    <string name="add_note">Новая заметка</string>
+    <string name="description">Описание</string>
+    <string name="Data">Data</string>
+    <string name="title">Заловок</string>
+    <string name="action_update">Изменить</string>
+    <string name="action_delete">Удалить</string>
 </resources>
