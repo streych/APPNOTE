@@ -1,19 +1,17 @@
 package com.example.appnote;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,8 +19,10 @@ import java.util.List;
 
 public class NotesFragment extends Fragment {
     private boolean isLandscape;
-    private NotesAdapter notesAdapter = new NotesAdapter();
+    private NotesAdapter notesAdapter;
     private NotesRepository repository = NotesRepositoryImpl.INSTANCE;
+    private int longClikedIndex;
+    private Note longClikedNote;
 
     public static NotesFragment newInstance() {
         NotesFragment fragment = new NotesFragment();
@@ -34,7 +34,9 @@ public class NotesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        notesAdapter = new NotesAdapter(this);
         if (getArguments() != null) {
+
         }
     }
 
@@ -66,8 +68,31 @@ public class NotesFragment extends Fragment {
                 }
             }
         });
+
+        notesAdapter.setLongClickedListener(new NotesAdapter.OnNoteLongClickedListener() {
+            @Override
+            public void OnNoteLongClickedListener(@NonNull Note note, int index) {
+                longClikedIndex = index;
+                longClikedNote = note;
+            }
+        });
         notesList.setAdapter(notesAdapter);
     }
 
+    @Override
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        requireActivity().getMenuInflater().inflate(R.menu.menu_notes_context, menu);
+    }
 
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_delete) {
+            repository.deleteCardData(longClikedNote);
+            notesAdapter.deleteCardData(longClikedNote);
+            notesAdapter.notifyItemRemoved(longClikedIndex);
+            return true;
+        }
+        return super.onContextItemSelected(item);
+    }
 }

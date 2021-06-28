@@ -16,4 +16,5 @@
     <string name="title">Заловок</string>
     <string name="action_update">Изменить</string>
     <string name="action_delete">Удалить</string>
+    <string name="Save">Сохранить</string>
 </resources>

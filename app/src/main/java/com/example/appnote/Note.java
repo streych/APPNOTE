@@ -5,12 +5,12 @@ import android.os.Parcelable;
 
 public class Note implements Parcelable {
 
-    private String id;
+    private int id;
     private String title;
     private String date;
     private String description;
 
-    public Note(String id, String title, String date, String description) {
+    public Note(int id, String title, String date, String description) {
         this.id = id;
         this.title = title;
         this.date = date;
@@ -18,7 +18,7 @@ public class Note implements Parcelable {
     }
 
     protected Note(Parcel in) {
-        id = in.readString();
+        id = in.readInt();
         title = in.readString();
         date = in.readString();
         description = in.readString();
@@ -36,7 +36,9 @@ public class Note implements Parcelable {
         }
     };
 
-    public String getId() {
+
+
+    public int getId() {
         return id;
     }
 
@@ -59,7 +61,7 @@ public class Note implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
+        dest.writeInt(id);
         dest.writeString(title);
         dest.writeString(date);
         dest.writeString(description);

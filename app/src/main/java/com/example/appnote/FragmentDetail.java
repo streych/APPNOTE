@@ -9,9 +9,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class FragmentDetail extends Fragment {
+    private final NotesRepository repository = NotesRepositoryImpl.INSTANCE;
+    private final NotesAdapter notesAdapter = new NotesAdapter(this);
     public static final String TAG = "DetailsFragment";
     private static final String ARG_NOTE = "ARG_NOTE";
 
@@ -50,7 +57,20 @@ public class FragmentDetail extends Fragment {
             data.setText(note.getDate());
             description.setText(note.getDescription());
             description.setTextSize(30);
+            Button buttonSave = getActivity().findViewById(R.id.saveNote);
 
+            SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+            String date = format.format(Calendar.getInstance().getTime());
+            EditText titleUp = getActivity().findViewById(R.id.newTitle);
+            EditText descriptionUp = getActivity().findViewById(R.id.newDescription);
+            buttonSave.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    repository.update(note.getId(), titleUp.getText().toString(), date, descriptionUp.getText().toString());
+                    notesAdapter.notifyDataSetChanged();
+
+                }
+            });
         }
 
     }
