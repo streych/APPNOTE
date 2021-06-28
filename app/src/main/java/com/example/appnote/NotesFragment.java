@@ -21,7 +21,7 @@ import java.util.List;
 
 public class NotesFragment extends Fragment {
     private boolean isLandscape;
-    NotesAdapter notesAdapter = new NotesAdapter();
+    private NotesAdapter notesAdapter = new NotesAdapter();
     private NotesRepository repository = NotesRepositoryImpl.INSTANCE;
 
     public static NotesFragment newInstance() {
@@ -48,6 +48,8 @@ public class NotesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
 
         RecyclerView notesList = view.findViewById(R.id.notes_list);
         notesList.setLayoutManager(new LinearLayoutManager(requireContext()));
