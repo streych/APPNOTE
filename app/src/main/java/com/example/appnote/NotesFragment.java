@@ -68,6 +68,4 @@ public class NotesFragment extends Fragment {
         });
         notesList.setAdapter(notesAdapter);
     }
-
-
 }

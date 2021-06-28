@@ -62,7 +62,5 @@ public class NotesFragmentAdd extends Fragment {
                 notesAdapter.notifyDataSetChanged();
             }
         });
-
-
     }
 }
