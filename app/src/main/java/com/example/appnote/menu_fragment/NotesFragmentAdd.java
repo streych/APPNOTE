@@ -21,7 +21,7 @@ import java.util.Calendar;
 
 public class NotesFragmentAdd extends Fragment {
     private final NotesRepository repository = NotesRepositoryImpl.INSTANCE;
-    private final NotesAdapter notesAdapter = new NotesAdapter();
+    private final NotesAdapter notesAdapter = new NotesAdapter(this);
 
     public static NotesFragmentAdd newInstance() {
         NotesFragmentAdd fragment = new NotesFragmentAdd();

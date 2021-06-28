@@ -18,7 +18,7 @@ import java.util.Calendar;
 
 public class FragmentDetail extends Fragment {
     private final NotesRepository repository = NotesRepositoryImpl.INSTANCE;
-    private final NotesAdapter notesAdapter = new NotesAdapter();
+    private final NotesAdapter notesAdapter = new NotesAdapter(this);
     public static final String TAG = "DetailsFragment";
     private static final String ARG_NOTE = "ARG_NOTE";
 

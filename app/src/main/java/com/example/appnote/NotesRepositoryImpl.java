@@ -33,7 +33,7 @@ public class NotesRepositoryImpl implements NotesRepository {
 
     @Override
     public void deleteCardData(Note note) {
-        //notes.remove(note.getId());
+        notes.remove(note);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class NotesRepositoryImpl implements NotesRepository {
 
             if (item.getId() == id){
 
-                notes.add(note);
+                notes.add(0, note);
                 notes.remove(i);
             }
         }
@@ -56,7 +56,7 @@ public class NotesRepositoryImpl implements NotesRepository {
         Random random = new Random();
         int ran = random.nextInt() * 1000;
         Note note = new Note(ran, title, data, desc);
-        notes.add(note);
+        notes.add(0, note);
         return note;
     }
 
